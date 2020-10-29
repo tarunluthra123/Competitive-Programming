@@ -1,0 +1,83 @@
+#include <iostream>
+#include<list>
+#include<queue>
+using namespace std;
+
+
+class Graph{
+
+    int V;
+    list<int> *l;
+
+    public:
+        Graph(int v){
+            V = v;
+            l = new list<int>[V];
+        }
+
+        void addEdge(int u,int v){
+            l[u].push_back(v);
+            l[v].push_back(u);
+        }
+
+
+        bool isBipartite(int s){
+
+            queue<int> q;
+            q.push(s);
+
+            int *colors = new int[V];
+            for(int i=0;i<V;i++){
+                colors[i] = -1; //Not Visited
+            }
+
+            colors[s] = 0;
+
+            while(!q.empty()){
+
+                int u = q.front();
+                q.pop();
+
+                for(int v:l[u]){
+                    if(colors[v]==-1){
+                        colors[v] = 1 - colors[u];
+                        q.push(v);
+                    }
+                    else if(colors[v]==colors[u]){
+                        return false;
+                    }
+
+                }
+
+            }
+
+        for(int i=0;i<V;i++){
+            cout << " i - "<<colors[i]<<"\n";
+        }
+        return true;
+        }
+
+
+};
+
+
+
+int main() {
+    Graph g(5);
+    g.addEdge(0,3);
+    g.addEdge(0,4);
+    g.addEdge(1,3);
+    g.addEdge(1,4);
+    g.addEdge(2,3);
+
+    if(g.isBipartite(1)){
+        cout<<"Yes it is";
+    }
+    else{
+        cout<<"No it is not";
+    }
+
+
+    return 0;
+}
+
