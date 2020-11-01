@@ -31,4 +31,8 @@ tarunluthra
 </a>
 </li>
 
+
+<li>
+<img src="https://stx1.spoj.com/gfx/2015e.png" height=25> &nbsp; : &nbsp; <a href="https://www.spoj.com/users/tarunluthra/">@tarunluthra</a>
+</li>
 </ul>
